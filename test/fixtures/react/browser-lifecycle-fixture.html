@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <main data-css="text[cl:#123] box[p:20w]">Initial</main>
+    <script type="module">
+      // Exercises the production runtime's lazy development validator path.
+      window.__DATA_CSS_DEBUG__ = true;
+      window.__DATA_CSS_ASSET_BASE__ = '../../../dist/data-css-react/assets';
+      await import('../../../dist/data-css-react/internal/runtime.js?lifecycle-test=1');
+      const started = await window.whenDataCssReady();
+      document.body.dataset.started = String(started);
+
+      // This callback is intentionally registered after startup.
+      window.dataCssReady(() => {
+        document.body.dataset.lateReadyCallback = 'true';
+        document.querySelector('main').setAttribute('data-css', 'text[cl:#456]');
+        const dynamic = document.createElement('div');
+        dynamic.setAttribute('data-css', 'text[bold]');
+        document.body.append(dynamic);
+      });
+
+      document.addEventListener('dataCssReadyAgain', () => {
+        document.body.dataset.dynamicCss = String(
+          [...document.querySelectorAll('style[data-css-id]')]
+            .some(style => style.textContent.includes('font-weight: bold'))
+        );
+        document.body.dataset.updatedCss = String(
+          [...document.querySelectorAll('style[data-css-id]')]
+            .some(style => style.textContent.includes('color: #456'))
+        );
+        document.body.dataset.sourceRetained = String(document.querySelector('main').hasAttribute('data-css'));
+      }, { once: true });
+    </script>
+  </body>
+</html>

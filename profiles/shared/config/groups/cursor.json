@@ -1,0 +1,180 @@
+{
+  "cursor": {
+    "property": "cursor"
+  },
+  "auto": {
+    "bindings": {
+      "cursor": "auto"
+    }
+  },
+  "default": {
+    "bindings": {
+      "cursor": "default"
+    }
+  },
+  "pointer": {
+    "bindings": {
+      "cursor": "pointer"
+    }
+  },
+  "text": {
+    "bindings": {
+      "cursor": "text"
+    }
+  },
+  "move": {
+    "bindings": {
+      "cursor": "move"
+    }
+  },
+  "wait": {
+    "bindings": {
+      "cursor": "wait"
+    }
+  },
+  "progress": {
+    "bindings": {
+      "cursor": "progress"
+    }
+  },
+  "help": {
+    "bindings": {
+      "cursor": "help"
+    }
+  },
+  "none": {
+    "bindings": {
+      "cursor": "none"
+    }
+  },
+  "notAllowed": {
+    "bindings": {
+      "cursor": "not-allowed"
+    }
+  },
+  "grab": {
+    "bindings": {
+      "cursor": "grab"
+    }
+  },
+  "grabbing": {
+    "bindings": {
+      "cursor": "grabbing"
+    }
+  },
+  "allScroll": {
+    "bindings": {
+      "cursor": "all-scroll"
+    }
+  },
+  "colResize": {
+    "bindings": {
+      "cursor": "col-resize"
+    }
+  },
+  "rowResize": {
+    "bindings": {
+      "cursor": "row-resize"
+    }
+  },
+  "nResize": {
+    "bindings": {
+      "cursor": "n-resize"
+    }
+  },
+  "sResize": {
+    "bindings": {
+      "cursor": "s-resize"
+    }
+  },
+  "eResize": {
+    "bindings": {
+      "cursor": "e-resize"
+    }
+  },
+  "wResize": {
+    "bindings": {
+      "cursor": "w-resize"
+    }
+  },
+  "neResize": {
+    "bindings": {
+      "cursor": "ne-resize"
+    }
+  },
+  "nwResize": {
+    "bindings": {
+      "cursor": "nw-resize"
+    }
+  },
+  "seResize": {
+    "bindings": {
+      "cursor": "se-resize"
+    }
+  },
+  "swResize": {
+    "bindings": {
+      "cursor": "sw-resize"
+    }
+  },
+  "contextMenu": {
+    "bindings": {
+      "cursor": "context-menu"
+    }
+  },
+  "cell": {
+    "bindings": {
+      "cursor": "cell"
+    }
+  },
+  "crosshair": {
+    "bindings": {
+      "cursor": "crosshair"
+    }
+  },
+  "verticalText": {
+    "bindings": {
+      "cursor": "vertical-text"
+    }
+  },
+  "alias": {
+    "bindings": {
+      "cursor": "alias"
+    }
+  },
+  "copy": {
+    "bindings": {
+      "cursor": "copy"
+    }
+  },
+  "noDrop": {
+    "bindings": {
+      "cursor": "no-drop"
+    }
+  },
+  "zoomIn": {
+    "bindings": {
+      "cursor": "zoom-in"
+    }
+  },
+  "zoomOut": {
+    "bindings": {
+      "cursor": "zoom-out"
+    }
+  },
+  "pointerEvents": {
+    "property": "pointerEvents"
+  },
+  "userSelect": {
+    "property": "userSelect"
+  },
+  "resize": {
+    "property": "resize"
+  },
+  "touchAction": {
+    "property": "touchAction"
+  },
+  "caretColor": {
+    "property": "caretColor"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "position": {
+    "property": "position"
+  },
+  "static": {
+    "bindings": {
+      "position": "static"
+    }
+  },
+  "relative": {
+    "bindings": {
+      "position": "relative"
+    }
+  },
+  "absolute": {
+    "bindings": {
+      "position": "absolute"
+    }
+  },
+  "fixed": {
+    "bindings": {
+      "position": "fixed"
+    }
+  },
+  "sticky": {
+    "bindings": {
+      "position": "sticky"
+    }
+  },
+  "zIndex": {
+    "property": "zIndex"
+  },
+  "top": {
+    "property": "top"
+  },
+  "right": {
+    "property": "right"
+  },
+  "bottom": {
+    "property": "bottom"
+  },
+  "left": {
+    "property": "left"
+  },
+  "inset": {
+    "property": "inset"
+  },
+  "insetBlock": {
+    "property": "insetBlock"
+  },
+  "insetBlockStart": {
+    "property": "insetBlockStart"
+  },
+  "insetBlockEnd": {
+    "property": "insetBlockEnd"
+  },
+  "insetInline": {
+    "property": "insetInline"
+  },
+  "insetInlineStart": {
+    "property": "insetInlineStart"
+  },
+  "insetInlineEnd": {
+    "property": "insetInlineEnd"
+  }
+}

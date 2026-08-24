@@ -1,0 +1,44 @@
+{
+  "animation": {
+    "property": "animation"
+  },
+  "animationName": {
+    "property": "animationName"
+  },
+  "animationDuration": {
+    "property": "animationDuration"
+  },
+  "animationTimingFunction": {
+    "property": "animationTimingFunction"
+  },
+  "animationDelay": {
+    "property": "animationDelay"
+  },
+  "animationIterationCount": {
+    "property": "animationIterationCount"
+  },
+  "animationDirection": {
+    "property": "animationDirection"
+  },
+  "animationFillMode": {
+    "property": "animationFillMode"
+  },
+  "animationPlayState": {
+    "property": "animationPlayState"
+  },
+  "transition": {
+    "property": "transition"
+  },
+  "transitionProperty": {
+    "property": "transitionProperty"
+  },
+  "transitionDuration": {
+    "property": "transitionDuration"
+  },
+  "transitionTimingFunction": {
+    "property": "transitionTimingFunction"
+  },
+  "transitionDelay": {
+    "property": "transitionDelay"
+  }
+}

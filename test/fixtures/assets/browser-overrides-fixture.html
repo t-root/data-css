@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <div class="fixture-card" data-css="name[fixture-card] text[cl:#123]">Override test</div>
+    <script type="module">
+      window.__DATA_CSS_ASSET_BASE__ = '.';
+      await import('../../../dist/data-css-js/internal/runtime.js?overrides-test=1');
+      document.body.dataset.ready = String(await window.whenDataCssReady());
+    </script>
+  </body>
+</html>

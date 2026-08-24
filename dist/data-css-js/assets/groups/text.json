@@ -1,0 +1,278 @@
+{
+  "cl": {
+    "property": "color"
+  },
+  "lh": {
+    "property": "lineHeight"
+  },
+  "align": {
+    "property": "textAlign"
+  },
+  "center": {
+    "bindings": {
+      "textAlign": "center"
+    }
+  },
+  "left": {
+    "bindings": {
+      "textAlign": "left"
+    }
+  },
+  "right": {
+    "bindings": {
+      "textAlign": "right"
+    }
+  },
+  "justify": {
+    "bindings": {
+      "textAlign": "justify"
+    }
+  },
+  "start": {
+    "bindings": {
+      "textAlign": "start"
+    }
+  },
+  "end": {
+    "bindings": {
+      "textAlign": "end"
+    }
+  },
+  "transform": {
+    "property": "textTransform"
+  },
+  "capitalize": {
+    "bindings": {
+      "textTransform": "capitalize"
+    }
+  },
+  "uppercase": {
+    "bindings": {
+      "textTransform": "uppercase"
+    }
+  },
+  "lowercase": {
+    "bindings": {
+      "textTransform": "lowercase"
+    }
+  },
+  "decoration": {
+    "property": "textDecoration"
+  },
+  "underline": {
+    "bindings": {
+      "textDecoration": "underline"
+    }
+  },
+  "overline": {
+    "bindings": {
+      "textDecoration": "overline"
+    }
+  },
+  "lineThrough": {
+    "bindings": {
+      "textDecoration": "line-through"
+    }
+  },
+  "decorationColor": {
+    "property": "textDecorationColor"
+  },
+  "decorationLine": {
+    "property": "textDecorationLine"
+  },
+  "decorationStyle": {
+    "property": "textDecorationStyle"
+  },
+  "decorationThickness": {
+    "property": "textDecorationThickness"
+  },
+  "decorationSkip": {
+    "property": "textDecorationSkip"
+  },
+  "letterSpacing": {
+    "property": "letterSpacing"
+  },
+  "wordSpacing": {
+    "property": "wordSpacing"
+  },
+  "whiteSpace": {
+    "property": "whiteSpace"
+  },
+  "nowrap": {
+    "bindings": {
+      "whiteSpace": "nowrap"
+    }
+  },
+  "pre": {
+    "bindings": {
+      "whiteSpace": "pre"
+    }
+  },
+  "preLine": {
+    "bindings": {
+      "whiteSpace": "pre-line"
+    }
+  },
+  "preWrap": {
+    "bindings": {
+      "whiteSpace": "pre-wrap"
+    }
+  },
+  "breakSpaces": {
+    "bindings": {
+      "whiteSpace": "break-spaces"
+    }
+  },
+  "wordBreak": {
+    "property": "wordBreak"
+  },
+  "normal": {
+    "bindings": {
+      "wordBreak": "normal"
+    }
+  },
+  "breakAll": {
+    "bindings": {
+      "wordBreak": "break-all"
+    }
+  },
+  "keepAll": {
+    "bindings": {
+      "wordBreak": "keep-all"
+    }
+  },
+  "overflowWrap": {
+    "property": "overflowWrap"
+  },
+  "breakWord": {
+    "bindings": {
+      "overflowWrap": "break-word"
+    }
+  },
+  "overflow": {
+    "property": "textOverflow"
+  },
+  "ellipsis": {
+    "bindings": {
+      "textOverflow": "ellipsis"
+    }
+  },
+  "clip": {
+    "bindings": {
+      "textOverflow": "clip"
+    }
+  },
+  "direction": {
+    "property": "direction"
+  },
+  "ltr": {
+    "bindings": {
+      "direction": "ltr"
+    }
+  },
+  "rtl": {
+    "bindings": {
+      "direction": "rtl"
+    }
+  },
+  "shadow": {
+    "property": "textShadow"
+  },
+  "shadowColor": {
+    "property": "textShadowColor"
+  },
+  "shadowOffsetX": {
+    "property": "textShadowOffsetX"
+  },
+  "shadowOffsetY": {
+    "property": "textShadowOffsetY"
+  },
+  "shadowBlurRadius": {
+    "property": "textShadowBlurRadius"
+  },
+  "textAlignLast": {
+    "property": "textAlignLast"
+  },
+  "textJustify": {
+    "property": "textJustify"
+  },
+  "textIndent": {
+    "property": "textIndent"
+  },
+  "textEmphasis": {
+    "property": "textEmphasis"
+  },
+  "textEmphasisColor": {
+    "property": "textEmphasisColor"
+  },
+  "textEmphasisStyle": {
+    "property": "textEmphasisStyle"
+  },
+  "textEmphasisPosition": {
+    "property": "textEmphasisPosition"
+  },
+  "textUnderlineOffset": {
+    "property": "textUnderlineOffset"
+  },
+  "textUnderlinePosition": {
+    "property": "textUnderlinePosition"
+  },
+  "textJustifyTrim": {
+    "property": "textJustifyTrim"
+  },
+  "textOrientation": {
+    "property": "textOrientation"
+  },
+  "textOverflowClip": {
+    "property": "textOverflowClip"
+  },
+  "textSizeAdjust": {
+    "property": "textSizeAdjust"
+  },
+  "textCombineUpright": {
+    "property": "textCombineUpright"
+  },
+  "writingMode": {
+    "property": "writingMode"
+  },
+  "verticalAlign": {
+    "property": "verticalAlign"
+  },
+  "font": {
+    "property": "fontFamily"
+  },
+  "size": {
+    "property": "fontSize"
+  },
+  "fontWeight": {
+    "property": "fontWeight"
+  },
+  "bold": {
+    "bindings": {
+      "fontWeight": "bold"
+    }
+  },
+  "bolder": {
+    "bindings": {
+      "fontWeight": "bolder"
+    }
+  },
+  "lighter": {
+    "bindings": {
+      "fontWeight": "lighter"
+    }
+  },
+  "fontStyle": {
+    "property": "fontStyle"
+  },
+  "italic": {
+    "bindings": {
+      "fontStyle": "italic"
+    }
+  },
+  "oblique": {
+    "bindings": {
+      "fontStyle": "oblique"
+    }
+  }
+}

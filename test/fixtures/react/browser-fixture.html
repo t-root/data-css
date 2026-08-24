@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <main id="initial" data-css="text[cl:#123|ellipsis] box[p:20w] mobile{box[p:40w]}">Initial</main>
+    <script type="module">
+      window.__dataCssErrors = [];
+      const originalConsoleError = console.error.bind(console);
+      console.error = (...args) => {
+        window.__dataCssErrors.push(args.map(String).join(' '));
+        originalConsoleError(...args);
+      };
+      window.__DATA_CSS_ASSET_BASE__ = '../../../dist/data-css-react/assets';
+      const { initDataCss } = await import('../../../dist/data-css-react/index.js');
+      const started = await initDataCss({ assetBase: '../../../dist/data-css-react/assets' });
+      document.body.dataset.started = String(started);
+      window.dataCssReady(() => {
+        const dynamic = document.createElement('div');
+        dynamic.id = 'dynamic';
+        dynamic.setAttribute('data-css', 'box[p:10w|bg:#fff] text[bold]');
+        dynamic.textContent = 'Dynamic';
+        document.body.append(dynamic);
+      }, { once: true });
+      document.addEventListener('dataCssReadyAgain', () => {
+        document.body.dataset.ready = 'true';
+        document.body.dataset.dynamicCss = String(
+          [...document.querySelectorAll('style[data-css-id]')]
+            .some(style => style.textContent.includes('font-weight: bold'))
+        );
+        document.body.dataset.errorCount = String(window.__dataCssErrors.length);
+      }, { once: true });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,524 @@
+{
+  "display": {
+    "property": "display"
+  },
+  "block": {
+    "bindings": {
+      "display": "block"
+    }
+  },
+  "inline": {
+    "bindings": {
+      "display": "inline"
+    }
+  },
+  "inlineBlock": {
+    "bindings": {
+      "display": "inline-block"
+    }
+  },
+  "none": {
+    "bindings": {
+      "display": "none"
+    }
+  },
+  "p": {
+    "property": "padding"
+  },
+  "pt": {
+    "property": "paddingTop"
+  },
+  "pr": {
+    "property": "paddingRight"
+  },
+  "pb": {
+    "property": "paddingBottom"
+  },
+  "pl": {
+    "property": "paddingLeft"
+  },
+  "m": {
+    "property": "margin"
+  },
+  "mt": {
+    "property": "marginTop"
+  },
+  "mr": {
+    "property": "marginRight"
+  },
+  "mb": {
+    "property": "marginBottom"
+  },
+  "ml": {
+    "property": "marginLeft"
+  },
+  "w": {
+    "property": "width"
+  },
+  "h": {
+    "property": "height"
+  },
+  "maxW": {
+    "property": "maxWidth"
+  },
+  "maxH": {
+    "property": "maxHeight"
+  },
+  "minW": {
+    "property": "minWidth"
+  },
+  "minH": {
+    "property": "minHeight"
+  },
+  "boxSizing": {
+    "property": "boxSizing"
+  },
+  "bg": {
+    "property": "background"
+  },
+  "bgColor": {
+    "property": "backgroundColor"
+  },
+  "bgImage": {
+    "property": "backgroundImage"
+  },
+  "bgPosition": {
+    "property": "backgroundPosition"
+  },
+  "bgSize": {
+    "property": "backgroundSize"
+  },
+  "bgSizeCover": {
+    "bindings": {
+      "backgroundSize": "cover"
+    }
+  },
+  "bgSizeContain": {
+    "bindings": {
+      "backgroundSize": "contain"
+    }
+  },
+  "bgRepeat": {
+    "property": "backgroundRepeat"
+  },
+  "repeat": {
+    "bindings": {
+      "backgroundRepeat": "repeat"
+    }
+  },
+  "noRepeat": {
+    "bindings": {
+      "backgroundRepeat": "no-repeat"
+    }
+  },
+  "repeatX": {
+    "bindings": {
+      "backgroundRepeat": "repeat-x"
+    }
+  },
+  "repeatY": {
+    "bindings": {
+      "backgroundRepeat": "repeat-y"
+    }
+  },
+  "bgAttachment": {
+    "property": "backgroundAttachment"
+  },
+  "bgScroll": {
+    "bindings": {
+      "backgroundAttachment": "scroll"
+    }
+  },
+  "bgFixed": {
+    "bindings": {
+      "backgroundAttachment": "fixed"
+    }
+  },
+  "bgLocal": {
+    "bindings": {
+      "backgroundAttachment": "local"
+    }
+  },
+  "bgClip": {
+    "property": "backgroundClip"
+  },
+  "bgClipB": {
+    "bindings": {
+      "backgroundClip": "border-box"
+    }
+  },
+  "bgClipP": {
+    "bindings": {
+      "backgroundClip": "padding-box"
+    }
+  },
+  "bgClipC": {
+    "bindings": {
+      "backgroundClip": "content-box"
+    }
+  },
+  "bgOrigin": {
+    "property": "backgroundOrigin"
+  },
+  "bgBlendMode": {
+    "property": "backgroundBlendMode"
+  },
+  "objectPosition": {
+    "property": "objectPosition"
+  },
+  "border": {
+    "property": "border"
+  },
+  "borderTop": {
+    "property": "borderTop"
+  },
+  "borderRight": {
+    "property": "borderRight"
+  },
+  "borderBottom": {
+    "property": "borderBottom"
+  },
+  "borderLeft": {
+    "property": "borderLeft"
+  },
+  "borderColor": {
+    "property": "borderColor"
+  },
+  "borderStyle": {
+    "property": "borderStyle"
+  },
+  "borderWidth": {
+    "property": "borderWidth"
+  },
+  "borderTopColor": {
+    "property": "borderTopColor"
+  },
+  "borderRightColor": {
+    "property": "borderRightColor"
+  },
+  "borderBottomColor": {
+    "property": "borderBottomColor"
+  },
+  "borderLeftColor": {
+    "property": "borderLeftColor"
+  },
+  "borderTopStyle": {
+    "property": "borderTopStyle"
+  },
+  "borderRightStyle": {
+    "property": "borderRightStyle"
+  },
+  "borderBottomStyle": {
+    "property": "borderBottomStyle"
+  },
+  "borderLeftStyle": {
+    "property": "borderLeftStyle"
+  },
+  "borderTopWidth": {
+    "property": "borderTopWidth"
+  },
+  "borderRightWidth": {
+    "property": "borderRightWidth"
+  },
+  "borderBottomWidth": {
+    "property": "borderBottomWidth"
+  },
+  "borderLeftWidth": {
+    "property": "borderLeftWidth"
+  },
+  "radius": {
+    "property": "borderRadius"
+  },
+  "tlRadius": {
+    "property": "borderTopLeftRadius"
+  },
+  "trRadius": {
+    "property": "borderTopRightRadius"
+  },
+  "blRadius": {
+    "property": "borderBottomLeftRadius"
+  },
+  "brRadius": {
+    "property": "borderBottomRightRadius"
+  },
+  "shadow": {
+    "property": "boxShadow"
+  },
+  "shadowX": {
+    "property": "boxShadowX"
+  },
+  "shadowY": {
+    "property": "boxShadowY"
+  },
+  "shadowBlur": {
+    "property": "boxShadowBlur"
+  },
+  "shadowSpread": {
+    "property": "boxShadowSpread"
+  },
+  "shadowColor": {
+    "property": "boxShadowColor"
+  },
+  "shadowInset": {
+    "property": "boxShadowInset"
+  },
+  "over": {
+    "property": "overflow"
+  },
+  "overX": {
+    "property": "overflowX"
+  },
+  "overY": {
+    "property": "overflowY"
+  },
+  "overWrap": {
+    "property": "overflowWrap"
+  },
+  "wordWrap": {
+    "property": "wordWrap"
+  },
+  "clip": {
+    "property": "clip"
+  },
+  "visibility": {
+    "property": "visibility"
+  },
+  "flex": {
+    "bindings": {
+      "display": "flex"
+    }
+  },
+  "inlineFlex": {
+    "bindings": {
+      "display": "inline-flex"
+    }
+  },
+  "alignItems": {
+    "property": "alignItems"
+  },
+  "crossStart": {
+    "bindings": {
+      "alignItems": "flex-start"
+    }
+  },
+  "crossEnd": {
+    "bindings": {
+      "alignItems": "flex-end"
+    }
+  },
+  "crossCenter": {
+    "bindings": {
+      "alignItems": "center"
+    }
+  },
+  "crossBaseline": {
+    "bindings": {
+      "alignItems": "baseline"
+    }
+  },
+  "crossStretch": {
+    "bindings": {
+      "alignItems": "stretch"
+    }
+  },
+  "justifyContent": {
+    "property": "justifyContent"
+  },
+  "mainStart": {
+    "bindings": {
+      "justifyContent": "flex-start"
+    }
+  },
+  "mainEnd": {
+    "bindings": {
+      "justifyContent": "flex-end"
+    }
+  },
+  "mainCenter": {
+    "bindings": {
+      "justifyContent": "center"
+    }
+  },
+  "mainAround": {
+    "bindings": {
+      "justifyContent": "space-around"
+    }
+  },
+  "mainEvenly": {
+    "bindings": {
+      "justifyContent": "space-evenly"
+    }
+  },
+  "mainBetween": {
+    "bindings": {
+      "justifyContent": "space-between"
+    }
+  },
+  "alignContent": {
+    "property": "alignContent"
+  },
+  "mainXstart": {
+    "bindings": {
+      "alignContent": "flex-start"
+    }
+  },
+  "mainXend": {
+    "bindings": {
+      "alignContent": "flex-end"
+    }
+  },
+  "mainXcenter": {
+    "bindings": {
+      "alignContent": "center"
+    }
+  },
+  "mainXaround": {
+    "bindings": {
+      "alignContent": "space-around"
+    }
+  },
+  "mainXevenly": {
+    "bindings": {
+      "alignContent": "space-evenly"
+    }
+  },
+  "mainXbetween": {
+    "bindings": {
+      "alignContent": "space-between"
+    }
+  },
+  "mainXbstretch": {
+    "bindings": {
+      "alignContent": "stretch"
+    }
+  },
+  "flexDirection": {
+    "property": "flexDirection"
+  },
+  "flexX": {
+    "bindings": {
+      "flexDirection": "row"
+    }
+  },
+  "flexY": {
+    "bindings": {
+      "flexDirection": "column"
+    }
+  },
+  "flexXx": {
+    "bindings": {
+      "flexDirection": "row-reverse"
+    }
+  },
+  "flexYy": {
+    "bindings": {
+      "flexDirection": "column-reverse"
+    }
+  },
+  "flexWrap": {
+    "property": "flexWrap"
+  },
+  "noWrap": {
+    "bindings": {
+      "flexWrap": "nowrap"
+    }
+  },
+  "wrap": {
+    "bindings": {
+      "flexWrap": "wrap"
+    }
+  },
+  "wrapWM": {
+    "bindings": {
+      "flexWrap": "wrap-reverse"
+    }
+  },
+  "flexGrow": {
+    "property": "flexGrow"
+  },
+  "flexShrink": {
+    "property": "flexShrink"
+  },
+  "flexBasis": {
+    "property": "flexBasis"
+  },
+  "flexItem": {
+    "property": "flex"
+  },
+  "order": {
+    "property": "order"
+  },
+  "alignSelf": {
+    "property": "alignSelf"
+  },
+  "grid": {
+    "bindings": {
+      "display": "grid"
+    }
+  },
+  "inlineGrid": {
+    "bindings": {
+      "display": "inline-grid"
+    }
+  },
+  "gridBoxC": {
+    "property": "gridTemplateColumns"
+  },
+  "gridBoxR": {
+    "property": "gridTemplateRows"
+  },
+  "gridBoxA": {
+    "property": "gridTemplateAreas"
+  },
+  "gridAflow": {
+    "property": "gridAutoFlow"
+  },
+  "gridArow": {
+    "property": "gridAutoRows"
+  },
+  "gridAcolumn": {
+    "property": "gridAutoColumns"
+  },
+  "placeItems": {
+    "property": "placeItems"
+  },
+  "placeContent": {
+    "property": "placeContent"
+  },
+  "justifyItems": {
+    "property": "justifyItems"
+  },
+  "gridA": {
+    "property": "gridArea"
+  },
+  "gridC": {
+    "property": "gridColumn"
+  },
+  "gridCstart": {
+    "property": "gridColumnStart"
+  },
+  "gridCend": {
+    "property": "gridColumnEnd"
+  },
+  "gridR": {
+    "property": "gridRow"
+  },
+  "gridRstart": {
+    "property": "gridRowStart"
+  },
+  "gridRend": {
+    "property": "gridRowEnd"
+  },
+  "placeSelf": {
+    "property": "placeSelf"
+  },
+  "gap": {
+    "property": "gap"
+  },
+  "rowGap": {
+    "property": "rowGap"
+  },
+  "columnGap": {
+    "property": "columnGap"
+  }
+}

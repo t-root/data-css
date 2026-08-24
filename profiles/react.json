@@ -1,0 +1,6 @@
+{
+  "outputDir": "dist/data-css-react",
+  "runtimeName": "data-css-react",
+  "defaultAssetBaseCode": "'/data-css-react'",
+  "clientDefaultAssetBaseCode": "'/data-css-react'"
+}

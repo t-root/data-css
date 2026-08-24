@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <section id="js-root"><div data-css="text[cl:#123]">JS</div></section>
+    <section id="react-root"><div data-css="text[cl:#456]">React</div></section>
+    <script type="module">
+      const jsRoot = document.querySelector('#js-root');
+      const reactRoot = document.querySelector('#react-root');
+
+      window.__DATA_CSS_ASSET_BASE__ = '../../../dist/data-css-js/assets';
+      window.__DATA_CSS_ROOT__ = jsRoot;
+      await import('../../../dist/data-css-js/internal/runtime.js?multi-js=1');
+
+      window.__DATA_CSS_ASSET_BASE__ = '../../../dist/data-css-react/assets';
+      window.__DATA_CSS_ROOT__ = reactRoot;
+      await import('../../../dist/data-css-react/internal/runtime.js?multi-react=1');
+
+      const [jsReady, reactReady] = await Promise.all([
+        window.__dataCssRuntimes['data-css-js'].readyPromise,
+        window.__dataCssRuntimes['data-css-react'].readyPromise,
+      ]);
+
+      const nextUpdate = runtime => new Promise(resolve =>
+        document.addEventListener(`dataCssReadyAgain:${runtime}`, resolve, { once: true })
+      );
+      const [jsUpdate, reactUpdate] = [nextUpdate('data-css-js'), nextUpdate('data-css-react')];
+      jsRoot.insertAdjacentHTML('beforeend', '<div data-css="text[bold]">JS dynamic</div>');
+      reactRoot.insertAdjacentHTML('beforeend', '<div data-css="text[italic]">React dynamic</div>');
+
+      await Promise.all([jsUpdate, reactUpdate]);
+      {
+        document.body.dataset.ready = String(jsReady && reactReady);
+        document.body.dataset.jsCss = String([...document.querySelectorAll('style[data-data-css-runtime="data-css-js"]')]
+          .some(style => style.textContent.includes('font-weight: bold')));
+        document.body.dataset.reactCss = String([...document.querySelectorAll('style[data-data-css-runtime="data-css-react"]')]
+          .some(style => style.textContent.includes('font-style: italic')));
+      }
+    </script>
+  </body>
+</html>

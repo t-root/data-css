@@ -1,0 +1,23 @@
+{
+  "transform": {
+    "property": "transform"
+  },
+  "transformOrigin": {
+    "property": "transformOrigin"
+  },
+  "perspective": {
+    "property": "perspective"
+  },
+  "perspectiveOrigin": {
+    "property": "perspectiveOrigin"
+  },
+  "backfaceVisibility": {
+    "property": "backfaceVisibility"
+  },
+  "transformStyle": {
+    "property": "transformStyle"
+  },
+  "rotate3d": {
+    "property": "rotate3d"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "devMode": false,
+  "assets": {
+    "base": "base.css",
+    "overrides": "overrides.css"
+  },
+  "devices": {
+    "mobile": {
+      "query": "(max-width: 700px)",
+      "pixelCSS": "450px"
+    },
+    "tablet": {
+      "query": "(min-width: 701px) and (max-width: 1200px)",
+      "pixelCSS": "950px"
+    },
+    "desktop": {
+      "query": "(min-width: 1201px)",
+      "pixelCSS": "1920px"
+    }
+  }
+}

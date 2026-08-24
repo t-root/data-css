@@ -1,0 +1,52 @@
+name: Verify packages
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [data-css-js, data-css-react]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build generated packages
+        run: node scripts/build-package.cjs all
+      - name: Run regression suite
+        run: |
+          if [ "${{ matrix.package }}" = "data-css-js" ]; then node test/unit/js/verify.js; else node test/unit/react/verify.js; fi
+      - name: Parse every published JavaScript file
+        run: |
+          node --check dist/${{ matrix.package }}/index.js
+          node --check dist/${{ matrix.package }}/internal/client.js
+          node --check dist/${{ matrix.package }}/internal/compiler.js
+          node --check dist/${{ matrix.package }}/internal/parser.js
+          node --check dist/${{ matrix.package }}/internal/runtime.js
+          node --check dist/${{ matrix.package }}/internal/security.js
+          node --check dist/${{ matrix.package }}/internal/validateCssSyntax.js
+          node --check dist/${{ matrix.package }}/build.cjs
+          if [ -f dist/${{ matrix.package }}/react.js ]; then node --check dist/${{ matrix.package }}/react.js; fi
+      - name: Verify publishable package contents
+        run: npm pack ./dist/${{ matrix.package }} --dry-run
+
+  browser-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build generated packages
+        run: node scripts/build-package.cjs all
+      - name: Install browser test dependencies
+        run: npm install
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run browser regression suite
+        run: npm run test:e2e

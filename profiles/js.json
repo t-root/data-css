@@ -1,0 +1,6 @@
+{
+  "outputDir": "dist/data-css-js",
+  "runtimeName": "data-css-js",
+  "defaultAssetBaseCode": "`${basePath}/assets`",
+  "clientDefaultAssetBaseCode": "undefined"
+}

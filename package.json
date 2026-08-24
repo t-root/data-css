@@ -1,0 +1,17 @@
+{
+  "name": "data-css-workspace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "build:js": "node scripts/build-package.cjs js",
+    "build:react": "node scripts/build-package.cjs react",
+    "build": "node scripts/build-package.cjs all",
+    "test": "npm run build && node test/unit/js/verify.js && node test/unit/react/verify.js",
+    "pack:js": "npm run build:js && npm pack ./dist/data-css-js --dry-run",
+    "pack:react": "npm run build:react && npm pack ./dist/data-css-react --dry-run"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}

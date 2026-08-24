@@ -1,0 +1,29 @@
+{
+  "name": "data-css-js",
+  "version": "1.3.0",
+  "description": "Framework-agnostic runtime CSS DSL using data-css attributes.",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    },
+    "./copy-assets": "./copy-assets.cjs",
+    "./build": "./build.cjs"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "internal",
+    "copy-assets.cjs",
+    "build.cjs",
+    "assets"
+  ],
+  "bin": {
+    "data-css-js-build": "./build.cjs"
+  },
+  "license": "MIT"
+}

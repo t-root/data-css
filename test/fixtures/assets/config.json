@@ -1,0 +1,18 @@
+{
+  "devMode": false,
+  "assets": {
+    "base": "base.css",
+    "overrides": "overrides.css"
+  },
+  "devices": {
+    "desktop": {
+      "query": "(min-width: 0px)",
+      "pixelCSS": "1920px"
+    }
+  },
+  "group": {
+    "text": {
+      "cl": { "property": "color" }
+    }
+  }
+}
