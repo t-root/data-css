@@ -366,6 +366,7 @@ Source dùng core chung; hai package không còn hai thư mục source độc l�
 core/       runtime, parser, compiler, security, validation, static builder chung
 templates/  metadata package, public entry, React provider, README từng gói
 profiles/   cấu hình build; shared/config tách định nghĩa DSL theo nhóm, shared/assets chứa CSS mặc định
+examples/   trang ví dụ mẫu; không đóng gói vào package
 test/       unit test, browser fixture, end-to-end test
 dist/       package publishable được sinh; không sửa trực tiếp
 scripts/    generator package
@@ -390,6 +391,8 @@ npm run test:e2e      # browser regression với Playwright
 npm run pack:js       # kiểm tra package JS trước publish
 npm run pack:react    # kiểm tra package React trước publish
 ```
+
+Xem ví dụ mẫu: chạy `npm run build:js`, mở một static server tại thư mục gốc repository (ví dụ `python -m http.server`) rồi truy cập `/examples/js/index.html`.
 
 Chỉ publish từ `dist/data-css-js` hoặc `dist/data-css-react`. Xem thêm [CORE.md](CORE.md) để biết quy trình build core/profile.
 

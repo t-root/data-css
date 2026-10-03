@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-css — Ví dụ mẫu</title>
+</head>
+<!--
+    Toàn bộ giao diện trang này được viết bằng data-css, không có CSS viết tay.
+    Bảng màu: nền #05070d · cyan #22d3ee · violet #a78bfa · pink #f472b6 · green #34d399
+-->
+<body data-css="box[minH:100vh|bg:radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(34,211,238,0.18),transparent_70%),linear-gradient(rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.05)_1px,transparent_1px),#05070d|bgSize:100%_100%,48px_48px,48px_48px|bgFixed] text[cl:#cbd5e1|lh:1.6|font:Inter,ui-sans-serif,system-ui,-apple-system,Segoe_UI,Roboto,sans-serif]">
+
+    <!-- Thanh điều hướng -->
+    <nav data-css="pos[sticky|top:0|zIndex:10] box[bg:rgba(5,7,13,0.88)|borderBottom:1px_solid_rgba(148,163,184,0.12)]">
+        <div data-css="box[flex|mainBetween|crossCenter|maxW:1120px|m:0_auto|p:14px_24px]">
+            <a href="#" data-css="box[flex|crossCenter|gap:10px]">
+                <span data-css="box[flex|mainCenter|crossCenter|w:32px|h:32px|radius:8px|bg:linear-gradient(135deg,#22d3ee,#a78bfa)|shadow:0_0_20px_rgba(34,211,238,0.35)] text[cl:#05070d|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">&lt;/&gt;</span>
+                <span data-css="text[cl:#f8fafc|bold|size:16px|letterSpacing:-0.01em]">data-css</span>
+                <span data-css="box[p:2px_8px|radius:999px|border:1px_solid_rgba(148,163,184,0.2)] text[cl:#94a3b8|size:11px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">v1.3.0</span>
+            </a>
+            <div data-css="all{box[flex|gap:28px]} mobile{box[none]}">
+                <a href="#typography" data-css="anim[transition:color_0.2s_ease] text[cl:#94a3b8|size:14px]" data-pc-hover="text[cl:#22d3ee]">Typography</a>
+                <a href="#layout" data-css="anim[transition:color_0.2s_ease] text[cl:#94a3b8|size:14px]" data-pc-hover="text[cl:#22d3ee]">Layout</a>
+                <a href="#interactive" data-css="anim[transition:color_0.2s_ease] text[cl:#94a3b8|size:14px]" data-pc-hover="text[cl:#22d3ee]">Interactive</a>
+                <a href="#responsive" data-css="anim[transition:color_0.2s_ease] text[cl:#94a3b8|size:14px]" data-pc-hover="text[cl:#22d3ee]">Responsive</a>
+                <a href="#dynamic" data-css="anim[transition:color_0.2s_ease] text[cl:#94a3b8|size:14px]" data-pc-hover="text[cl:#22d3ee]">Dynamic</a>
+            </div>
+        </div>
+    </nav>
+
+    <main data-css="box[maxW:1120px|m:0_auto|p:0_24px]">
+
+        <!-- Hero -->
+        <section data-css="all{box[grid|gap:48px|crossCenter|pt:88px|pb:56px]} mobile{box[gridBoxC:1fr|pt:56px]} tablet{box[gridBoxC:1fr]} desktop{box[gridBoxC:1.05fr_1fr]}">
+            <div>
+                <div data-css="box[inlineFlex|crossCenter|gap:8px|p:6px_12px|mb:24px|radius:999px|bg:rgba(52,211,153,0.08)|border:1px_solid_rgba(52,211,153,0.3)] text[cl:#6ee7b7|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">
+                    <span data-css="box[inlineBlock|w:8px|h:8px|radius:50%|bg:#34d399|shadow:0_0_10px_#34d399]"></span>
+                    runtime CSS DSL · zero stylesheet
+                </div>
+                <h1 data-css="text[cl:#f8fafc|size:clamp(36px,5vw,60px)|bold|lh:1.05|letterSpacing:-0.035em] box[mb:20px]">
+                    Viết giao diện bằng
+                    <span data-css="box[bg:linear-gradient(90deg,#22d3ee,#a78bfa_55%,#f472b6)|bgClip:text] text[cl:transparent]">thuộc tính data-css</span>
+                </h1>
+                <p data-css="text[cl:#94a3b8|size:17px|lh:1.75] box[maxW:520px|mb:32px]">
+                    Khai báo style ngay trên HTML với cú pháp <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace|size:15px]">group[key:value]</code>.
+                    Runtime biên dịch thành class CSS, hỗ trợ responsive, pseudo-class, pseudo-element và DOM động.
+                </p>
+                <div data-css="box[flex|wrap|gap:12px]">
+                    <a href="#typography"
+                       data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[inlineFlex|crossCenter|gap:8px|p:12px_22px|radius:10px|bg:linear-gradient(135deg,#22d3ee,#a78bfa)|shadow:0_8px_30px_rgba(34,211,238,0.25)] text[cl:#05070d|bold|size:14px]"
+                       data-pc-hover="tf[transform:translateY(-2px)] box[shadow:0_12px_40px_rgba(167,139,250,0.45)]">
+                        Xem ví dụ →
+                    </a>
+                    <a href="#dynamic"
+                       data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[inlineFlex|crossCenter|gap:8px|p:12px_22px|radius:10px|bg:rgba(15,23,42,0.6)|border:1px_solid_rgba(148,163,184,0.25)] text[cl:#e2e8f0|size:14px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                       data-pc-hover="box[borderColor:rgba(34,211,238,0.6)] text[cl:#22d3ee]">
+                        $ initDataCss()
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cửa sổ code -->
+            <div data-css="pos[relative] box[radius:16px|bg:rgba(10,15,28,0.85)|border:1px_solid_rgba(148,163,184,0.16)|shadow:0_30px_80px_rgba(0,0,0,0.55),0_0_0_1px_rgba(34,211,238,0.06)|over:hidden]"
+                 data-pe-before="content[] pos[absolute|top:0|left:32px|right:32px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(34,211,238,0.8),transparent)]">
+                <div data-css="box[flex|crossCenter|gap:8px|p:14px_18px|borderBottom:1px_solid_rgba(148,163,184,0.12)]">
+                    <span data-css="box[w:11px|h:11px|radius:50%|bg:#ff5f57]"></span>
+                    <span data-css="box[w:11px|h:11px|radius:50%|bg:#febc2e]"></span>
+                    <span data-css="box[w:11px|h:11px|radius:50%|bg:#28c840]"></span>
+                    <span data-css="box[ml:10px] text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">index.html</span>
+                </div>
+<pre data-css="box[m:0|p:20px_22px|overX:auto] text[cl:#cbd5e1|size:13px|lh:1.8|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"><span data-css="text[cl:#67e8f9]">&lt;button</span>
+  <span data-css="text[cl:#c4b5fd]">data-css</span>=<span data-css="text[cl:#86efac]">"box[p:12px_20px|radius:10px]
+            text[cl:#e2e8f0|bold]"</span>
+  <span data-css="text[cl:#c4b5fd]">data-pc-hover</span>=<span data-css="text[cl:#86efac]">"box[shadow:0_0_24px_#22d3ee]"</span><span data-css="text[cl:#67e8f9]">&gt;</span>
+  Deploy
+<span data-css="text[cl:#67e8f9]">&lt;/button&gt;</span></pre>
+                <div data-css="box[p:12px_22px|borderTop:1px_dashed_rgba(148,163,184,0.16)|bg:rgba(2,6,23,0.6)]">
+                    <p data-css="text[cl:#475569|size:11px|uppercase|letterSpacing:0.15em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:6px]">→ CSS được sinh ra</p>
+<pre data-css="box[m:0|overX:auto] text[cl:#64748b|size:12px|lh:1.7|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">.x7f3k { padding: 12px 20px; border-radius: 10px;
+         color: #e2e8f0; font-weight: bold; }
+.x7f3k:hover { box-shadow: 0 0 24px #22d3ee; }</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chỉ số -->
+        <section data-css="all{box[grid|gap:1px|radius:14px|over:hidden|bg:rgba(148,163,184,0.14)|border:1px_solid_rgba(148,163,184,0.14)]} mobile{box[gridBoxC:repeat(2,1fr)]} tablet{box[gridBoxC:repeat(4,1fr)]} desktop{box[gridBoxC:repeat(4,1fr)]}">
+            <div data-css="box[p:22px|bg:#070b14]">
+                <p data-css="text[cl:#22d3ee|size:28px|bold|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">6</p>
+                <p data-css="text[cl:#64748b|size:13px]">nhóm thuộc tính mặc định</p>
+            </div>
+            <div data-css="box[p:22px|bg:#070b14]">
+                <p data-css="text[cl:#a78bfa|size:28px|bold|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">3</p>
+                <p data-css="text[cl:#64748b|size:13px]">breakpoint responsive</p>
+            </div>
+            <div data-css="box[p:22px|bg:#070b14]">
+                <p data-css="text[cl:#f472b6|size:28px|bold|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">:hover</p>
+                <p data-css="text[cl:#64748b|size:13px]">pseudo-class &amp; ::before</p>
+            </div>
+            <div data-css="box[p:22px|bg:#070b14]">
+                <p data-css="text[cl:#34d399|size:28px|bold|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">live</p>
+                <p data-css="text[cl:#64748b|size:13px]">theo dõi DOM động</p>
+            </div>
+        </section>
+
+        <!-- 01 · Typography -->
+        <section id="typography" data-css="box[pt:96px]">
+            <header data-css="box[mb:32px|maxW:640px]">
+                <p data-css="text[cl:#22d3ee|size:12px|uppercase|letterSpacing:0.2em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:12px]"
+                   data-pe-before="content[// ] text[cl:#475569]">01 · Typography</p>
+                <h2 data-css="text[cl:#f8fafc|size:clamp(26px,3vw,36px)|bold|lh:1.15|letterSpacing:-0.02em] box[mb:12px]">Kiểu chữ</h2>
+                <p data-css="text[cl:#94a3b8|size:16px|lh:1.7]">Nhóm <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[...]</code> điều khiển màu, cỡ chữ, độ đậm, biến đổi và căn lề.</p>
+            </header>
+
+            <div data-css="all{box[grid|gap:20px]} mobile{box[gridBoxC:1fr]} tablet{box[gridBoxC:1fr]} desktop{box[gridBoxC:1fr_1fr]}">
+                <!-- Kiểu chữ cơ bản -->
+                <div data-css="pos[relative] box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)|over:hidden]"
+                     data-pe-before="content[] pos[absolute|top:0|left:24px|right:24px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(34,211,238,0.6),transparent)]">
+                    <h3 data-css="text[cl:#e2e8f0|size:15px|bold] box[mb:8px]">Text styles</h3>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0|borderBottom:1px_dashed_rgba(148,163,184,0.14)]">
+                        <span data-css="text[cl:#cbd5e1|size:16px]">Văn bản thường</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[size:16px]</code>
+                    </div>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0|borderBottom:1px_dashed_rgba(148,163,184,0.14)]">
+                        <span data-css="text[cl:#f8fafc|bold|uppercase|letterSpacing:0.12em|size:15px]">Bold uppercase</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[bold|uppercase]</code>
+                    </div>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0|borderBottom:1px_dashed_rgba(148,163,184,0.14)]">
+                        <span data-css="text[cl:#c4b5fd|italic|capitalize|size:16px]">italic và capitalize</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[italic|capitalize]</code>
+                    </div>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0|borderBottom:1px_dashed_rgba(148,163,184,0.14)]">
+                        <span data-css="text[cl:#e2e8f0|underline|decorationColor:#22d3ee|decorationThickness:2px|textUnderlineOffset:5px|size:16px]">Gạch chân neon</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[underline|decorationColor]</code>
+                    </div>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0|borderBottom:1px_dashed_rgba(148,163,184,0.14)]">
+                        <span data-css="text[cl:#67e8f9|bold|size:18px|shadow:0_0_18px_rgba(34,211,238,0.7)|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">GLOW_TEXT</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">text[shadow:0_0_18px_...]</code>
+                    </div>
+                    <div data-css="box[flex|mainBetween|crossCenter|wrap|gap:8px|p:14px_0_0]">
+                        <span data-css="box[bg:linear-gradient(90deg,#22d3ee,#a78bfa,#f472b6)|bgClip:text] text[cl:transparent|bold|size:20px]">Gradient text</span>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">box[bgClip:text]</code>
+                    </div>
+                </div>
+
+                <!-- Căn lề -->
+                <div data-css="pos[relative] box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)|over:hidden]"
+                     data-pe-before="content[] pos[absolute|top:0|left:24px|right:24px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(167,139,250,0.6),transparent)]">
+                    <h3 data-css="text[cl:#e2e8f0|size:15px|bold] box[mb:16px]">Text alignment</h3>
+                    <div data-css="box[flex|flexY|gap:10px]">
+                        <p data-css="text[left|cl:#cbd5e1|size:14px] box[p:10px_14px|radius:8px|bg:rgba(2,6,23,0.6)|borderLeft:2px_solid_#22d3ee]">text[left]</p>
+                        <p data-css="text[center|cl:#cbd5e1|size:14px] box[p:10px_14px|radius:8px|bg:rgba(2,6,23,0.6)|borderLeft:2px_solid_#a78bfa]">text[center]</p>
+                        <p data-css="text[right|cl:#cbd5e1|size:14px] box[p:10px_14px|radius:8px|bg:rgba(2,6,23,0.6)|borderLeft:2px_solid_#f472b6]">text[right]</p>
+                        <p data-css="text[justify|cl:#94a3b8|size:14px|lh:1.7] box[p:10px_14px|radius:8px|bg:rgba(2,6,23,0.6)|borderLeft:2px_solid_#34d399]">text[justify] — đoạn văn được căn đều hai bên, khoảng cách giữa các từ tự giãn để lấp đầy chiều rộng khung chứa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 · Layout -->
+        <section id="layout" data-css="box[pt:96px]">
+            <header data-css="box[mb:32px|maxW:640px]">
+                <p data-css="text[cl:#22d3ee|size:12px|uppercase|letterSpacing:0.2em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:12px]"
+                   data-pe-before="content[// ] text[cl:#475569]">02 · Layout</p>
+                <h2 data-css="text[cl:#f8fafc|size:clamp(26px,3vw,36px)|bold|lh:1.15|letterSpacing:-0.02em] box[mb:12px]">Flex &amp; Grid</h2>
+                <p data-css="text[cl:#94a3b8|size:16px|lh:1.7]">Binding như <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">flex</code>, <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">mainBetween</code>, <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">gridBoxC</code> rút gọn các thuộc tính layout thường dùng.</p>
+            </header>
+
+            <div data-css="all{box[grid|gap:20px]} mobile{box[gridBoxC:1fr]} tablet{box[gridBoxC:1fr]} desktop{box[gridBoxC:1fr_1fr]}">
+                <!-- Flex -->
+                <div data-css="box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)]">
+                    <div data-css="box[flex|mainBetween|crossCenter|mb:14px]">
+                        <h3 data-css="text[cl:#e2e8f0|size:15px|bold]">Flex row</h3>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">box[flex|flexItem:1/2/1]</code>
+                    </div>
+                    <div data-css="box[flex|gap:10px|crossCenter|p:10px|mb:20px|radius:12px|border:1px_dashed_rgba(148,163,184,0.25)]">
+                        <div data-css="box[flexItem:1|p:16px_8px|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[center|cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">flex:1</div>
+                        <div data-css="box[flexItem:2|p:16px_8px|radius:10px|bg:rgba(167,139,250,0.1)|border:1px_solid_rgba(167,139,250,0.35)] text[center|cl:#c4b5fd|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">flex:2</div>
+                        <div data-css="box[flexItem:1|p:16px_8px|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[center|cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">flex:1</div>
+                    </div>
+
+                    <div data-css="box[flex|mainBetween|crossCenter|mb:14px]">
+                        <h3 data-css="text[cl:#e2e8f0|size:15px|bold]">Flex column</h3>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">box[flex|flexY|mainCenter]</code>
+                    </div>
+                    <div data-css="box[flex|flexY|gap:10px|mainCenter|crossStretch|h:200px|p:10px|radius:12px|border:1px_dashed_rgba(148,163,184,0.25)]">
+                        <div data-css="box[p:12px|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[center|cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">row-01</div>
+                        <div data-css="box[p:12px|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[center|cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">row-02</div>
+                        <div data-css="box[p:12px|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[center|cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">row-03</div>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div data-css="box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)]">
+                    <div data-css="box[flex|mainBetween|crossCenter|mb:14px]">
+                        <h3 data-css="text[cl:#e2e8f0|size:15px|bold]">Grid 4 cột</h3>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">gridBoxC:repeat(4,1fr)</code>
+                    </div>
+                    <div data-css="box[grid|gridBoxC:repeat(4,1fr)|gap:10px|p:10px|mb:20px|radius:12px|border:1px_dashed_rgba(148,163,184,0.25)]">
+                        <div data-css="box[p:16px_4px|radius:10px|bg:rgba(167,139,250,0.1)|border:1px_solid_rgba(167,139,250,0.35)] text[center|cl:#c4b5fd|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">01</div>
+                        <div data-css="box[p:16px_4px|radius:10px|bg:rgba(167,139,250,0.1)|border:1px_solid_rgba(167,139,250,0.35)] text[center|cl:#c4b5fd|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">02</div>
+                        <div data-css="box[p:16px_4px|radius:10px|bg:rgba(167,139,250,0.1)|border:1px_solid_rgba(167,139,250,0.35)] text[center|cl:#c4b5fd|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">03</div>
+                        <div data-css="box[p:16px_4px|radius:10px|bg:rgba(167,139,250,0.1)|border:1px_solid_rgba(167,139,250,0.35)] text[center|cl:#c4b5fd|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">04</div>
+                    </div>
+
+                    <div data-css="box[flex|mainBetween|crossCenter|mb:14px]">
+                        <h3 data-css="text[cl:#e2e8f0|size:15px|bold]">Grid phức hợp</h3>
+                        <code data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">gridBoxC:2fr_1fr_1fr</code>
+                    </div>
+                    <div data-css="box[grid|gridBoxC:2fr_1fr_1fr|gridBoxR:1fr_1fr|gap:10px|h:200px|p:10px|radius:12px|border:1px_dashed_rgba(148,163,184,0.25)]">
+                        <div data-css="box[gridR:span_2|flex|mainCenter|crossCenter|radius:10px|bg:linear-gradient(135deg,rgba(34,211,238,0.18),rgba(167,139,250,0.18))|border:1px_solid_rgba(34,211,238,0.35)] text[cl:#e2e8f0|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">main · 2fr</div>
+                        <div data-css="box[flex|mainCenter|crossCenter|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">1fr</div>
+                        <div data-css="box[flex|mainCenter|crossCenter|radius:10px|bg:rgba(34,211,238,0.08)|border:1px_solid_rgba(34,211,238,0.3)] text[cl:#67e8f9|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">1fr</div>
+                        <div data-css="box[gridC:span_2|flex|mainCenter|crossCenter|radius:10px|bg:rgba(244,114,182,0.08)|border:1px_solid_rgba(244,114,182,0.3)] text[cl:#f9a8d4|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">span 2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 · Interactive -->
+        <section id="interactive" data-css="box[pt:96px]">
+            <header data-css="box[mb:32px|maxW:640px]">
+                <p data-css="text[cl:#22d3ee|size:12px|uppercase|letterSpacing:0.2em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:12px]"
+                   data-pe-before="content[// ] text[cl:#475569]">03 · Interactive</p>
+                <h2 data-css="text[cl:#f8fafc|size:clamp(26px,3vw,36px)|bold|lh:1.15|letterSpacing:-0.02em] box[mb:12px]">Pseudo-class &amp; pseudo-element</h2>
+                <p data-css="text[cl:#94a3b8|size:16px|lh:1.7]">Thuộc tính <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">data-pc-*</code> sinh ra <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">:hover</code>, <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">:focus</code>…; <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">data-pe-before/after</code> sinh ra <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">::before</code> và <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">::after</code>.</p>
+            </header>
+
+            <!-- Nút có hiệu ứng hover -->
+            <div data-css="box[flex|wrap|gap:14px|mb:28px]">
+                <button data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:12px_20px|radius:10px|bg:rgba(34,211,238,0.06)|border:1px_solid_rgba(34,211,238,0.35)] text[cl:#67e8f9|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                        data-pc-hover="tf[transform:scale(1.06)] box[bg:rgba(34,211,238,0.14)|shadow:0_0_28px_rgba(34,211,238,0.35)]">
+                    scale(1.06)
+                </button>
+                <button data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:12px_20px|radius:10px|bg:rgba(167,139,250,0.08)|border:1px_solid_rgba(167,139,250,0.4)] text[cl:#c4b5fd|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                        data-pc-hover="tf[transform:rotate(-3deg)] box[bg:rgba(167,139,250,0.16)|shadow:0_0_28px_rgba(167,139,250,0.35)]">
+                    rotate(-3deg)
+                </button>
+                <button data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:12px_20px|radius:10px|bg:rgba(244,114,182,0.08)|border:1px_solid_rgba(244,114,182,0.4)] text[cl:#f9a8d4|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                        data-pc-hover="tf[transform:translateY(-4px)] box[bg:rgba(244,114,182,0.16)|shadow:0_10px_28px_rgba(244,114,182,0.3)]">
+                    translateY(-4px)
+                </button>
+                <button data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:12px_20px|radius:10px|bg:rgba(52,211,153,0.08)|border:1px_solid_rgba(52,211,153,0.4)] text[cl:#6ee7b7|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                        data-pc-hover="box[bg:rgba(52,211,153,0.16)]"
+                        data-pc-active="tf[transform:scale(0.94)]">
+                    :active
+                </button>
+            </div>
+
+            <!-- Thẻ: hover thẻ cha đổi style thẻ con qua parent[...] -->
+            <div data-css="all{box[grid|gap:20px]} mobile{box[gridBoxC:1fr]} tablet{box[gridBoxC:repeat(3,1fr)]} desktop{box[gridBoxC:repeat(3,1fr)]}">
+                <div class="feature-card"
+                     data-css="pos[relative] anim[transition:all_0.3s_ease] box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)|over:hidden]"
+                     data-pc-hover="tf[transform:translateY(-6px)] box[borderColor:rgba(34,211,238,0.5)|shadow:0_20px_50px_rgba(8,145,178,0.25)]"
+                     data-pe-before="content[] pos[absolute|top:0|left:24px|right:24px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(34,211,238,0.7),transparent)]">
+                    <div data-css="anim[transition:all_0.3s_ease] box[flex|mainCenter|crossCenter|w:44px|h:44px|mb:18px|radius:12px|bg:rgba(148,163,184,0.08)|border:1px_solid_rgba(148,163,184,0.18)] text[cl:#94a3b8|bold|size:15px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                         data-pc-hover="parent[.feature-card] box[bg:rgba(34,211,238,0.14)|borderColor:rgba(34,211,238,0.5)] text[cl:#22d3ee]">:h</div>
+                    <h3 data-css="anim[transition:color_0.3s_ease] text[cl:#f1f5f9|bold|size:17px] box[mb:8px]"
+                        data-pc-hover="parent[.feature-card] text[cl:#22d3ee]">Pseudo-class</h3>
+                    <p data-css="text[cl:#94a3b8|size:14px|lh:1.7]">Một thuộc tính <code data-css="text[cl:#cbd5e1|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace|size:13px]">data-pc-hover</code> là đủ để thẻ nổi lên và phát sáng.</p>
+                </div>
+
+                <div class="feature-card"
+                     data-css="pos[relative] anim[transition:all_0.3s_ease] box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)|over:hidden]"
+                     data-pc-hover="tf[transform:translateY(-6px)] box[borderColor:rgba(167,139,250,0.5)|shadow:0_20px_50px_rgba(124,58,237,0.25)]"
+                     data-pe-before="content[] pos[absolute|top:0|left:24px|right:24px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(167,139,250,0.7),transparent)]">
+                    <div data-css="anim[transition:all_0.3s_ease] box[flex|mainCenter|crossCenter|w:44px|h:44px|mb:18px|radius:12px|bg:rgba(148,163,184,0.08)|border:1px_solid_rgba(148,163,184,0.18)] text[cl:#94a3b8|bold|size:15px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                         data-pc-hover="parent[.feature-card] box[bg:rgba(167,139,250,0.14)|borderColor:rgba(167,139,250,0.5)] text[cl:#a78bfa]">↑</div>
+                    <h3 data-css="anim[transition:color_0.3s_ease] text[cl:#f1f5f9|bold|size:17px] box[mb:8px]"
+                        data-pc-hover="parent[.feature-card] text[cl:#a78bfa]">Parent selector</h3>
+                    <p data-css="text[cl:#94a3b8|size:14px|lh:1.7]"><code data-css="text[cl:#cbd5e1|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace|size:13px]">parent[.feature-card]</code> — hover thẻ cha, icon và tiêu đề bên trong đổi màu.</p>
+                </div>
+
+                <div class="feature-card"
+                     data-css="pos[relative] anim[transition:all_0.3s_ease] box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)|over:hidden]"
+                     data-pc-hover="tf[transform:translateY(-6px)] box[borderColor:rgba(244,114,182,0.5)|shadow:0_20px_50px_rgba(219,39,119,0.22)]"
+                     data-pe-before="content[] pos[absolute|top:0|left:24px|right:24px] box[h:1px|bg:linear-gradient(90deg,transparent,rgba(244,114,182,0.7),transparent)]">
+                    <div data-css="anim[transition:all_0.3s_ease] box[flex|mainCenter|crossCenter|w:44px|h:44px|mb:18px|radius:12px|bg:rgba(148,163,184,0.08)|border:1px_solid_rgba(148,163,184,0.18)] text[cl:#94a3b8|bold|size:15px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                         data-pc-hover="parent[.feature-card] box[bg:rgba(244,114,182,0.14)|borderColor:rgba(244,114,182,0.5)] text[cl:#f472b6]">::</div>
+                    <h3 data-css="anim[transition:color_0.3s_ease] text[cl:#f1f5f9|bold|size:17px] box[mb:8px]"
+                        data-pc-hover="parent[.feature-card] text[cl:#f472b6]">Pseudo-element</h3>
+                    <p data-css="text[cl:#94a3b8|size:14px|lh:1.7] box[mb:14px]">Badge dưới đây có dấu chấm sinh bằng <code data-css="text[cl:#cbd5e1|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace|size:13px]">data-pe-before</code>.</p>
+                    <span data-css="box[inlineFlex|crossCenter|gap:6px|p:4px_10px|radius:999px|bg:rgba(244,114,182,0.1)|border:1px_solid_rgba(244,114,182,0.35)] text[cl:#f9a8d4|size:11px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                          data-pe-before="content[●] text[cl:#f472b6]">NEW · ::before</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 · Responsive -->
+        <section id="responsive" data-css="box[pt:96px]">
+            <header data-css="box[mb:32px|maxW:640px]">
+                <p data-css="text[cl:#22d3ee|size:12px|uppercase|letterSpacing:0.2em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:12px]"
+                   data-pe-before="content[// ] text[cl:#475569]">04 · Responsive</p>
+                <h2 data-css="text[cl:#f8fafc|size:clamp(26px,3vw,36px)|bold|lh:1.15|letterSpacing:-0.02em] box[mb:12px]">Breakpoint</h2>
+                <p data-css="text[cl:#94a3b8|size:16px|lh:1.7]">Bọc style trong <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">mobile{…}</code>, <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">tablet{…}</code>, <code data-css="text[cl:#67e8f9|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">desktop{…}</code>. Thay đổi độ rộng cửa sổ để thấy lưới đổi số cột.</p>
+            </header>
+
+            <!-- Chỉ báo breakpoint hiện tại -->
+            <div data-css="box[inlineFlex|crossCenter|gap:10px|p:8px_14px|mb:20px|radius:999px|bg:rgba(52,211,153,0.08)|border:1px_solid_rgba(52,211,153,0.35)] text[cl:#6ee7b7|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">
+                <span data-css="box[inlineBlock|w:8px|h:8px|radius:50%|bg:#34d399|shadow:0_0_10px_#34d399]"></span>
+                breakpoint:
+                <strong data-css="all{box[none] text[cl:#f8fafc]} mobile{box[inline]}">mobile · 1 cột</strong>
+                <strong data-css="all{box[none] text[cl:#f8fafc]} tablet{box[inline]}">tablet · 2 cột</strong>
+                <strong data-css="all{box[none] text[cl:#f8fafc]} desktop{box[inline]}">desktop · 3 cột</strong>
+            </div>
+
+            <!-- children[...]: hover vào từng node con -->
+            <div data-css="all{box[grid|gap:16px]} mobile{box[gridBoxC:1fr]} tablet{box[gridBoxC:repeat(2,1fr)]} desktop{box[gridBoxC:repeat(3,1fr)]}"
+                 data-pc-hover="children[.resp-node] box[borderColor:#34d399|shadow:0_0_30px_rgba(52,211,153,0.25)]">
+                <div class="resp-node" data-css="anim[transition:all_0.25s_ease] box[p:20px|radius:14px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(52,211,153,0.2)]">
+                    <p data-css="text[cl:#6ee7b7|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:10px]">node-01</p>
+                    <div data-css="box[h:6px|radius:999px|bg:rgba(148,163,184,0.12)|over:hidden]"><div data-css="box[w:82%|h:100%|radius:999px|bg:linear-gradient(90deg,#34d399,#22d3ee)]"></div></div>
+                </div>
+                <div class="resp-node" data-css="anim[transition:all_0.25s_ease] box[p:20px|radius:14px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(52,211,153,0.2)]">
+                    <p data-css="text[cl:#6ee7b7|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:10px]">node-02</p>
+                    <div data-css="box[h:6px|radius:999px|bg:rgba(148,163,184,0.12)|over:hidden]"><div data-css="box[w:56%|h:100%|radius:999px|bg:linear-gradient(90deg,#34d399,#22d3ee)]"></div></div>
+                </div>
+                <div class="resp-node" data-css="anim[transition:all_0.25s_ease] box[p:20px|radius:14px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(52,211,153,0.2)]">
+                    <p data-css="text[cl:#6ee7b7|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:10px]">node-03</p>
+                    <div data-css="box[h:6px|radius:999px|bg:rgba(148,163,184,0.12)|over:hidden]"><div data-css="box[w:94%|h:100%|radius:999px|bg:linear-gradient(90deg,#34d399,#22d3ee)]"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 · Dynamic -->
+        <section id="dynamic" data-css="box[pt:96px]">
+            <header data-css="box[mb:32px|maxW:640px]">
+                <p data-css="text[cl:#22d3ee|size:12px|uppercase|letterSpacing:0.2em|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace] box[mb:12px]"
+                   data-pe-before="content[// ] text[cl:#475569]">05 · Dynamic</p>
+                <h2 data-css="text[cl:#f8fafc|size:clamp(26px,3vw,36px)|bold|lh:1.15|letterSpacing:-0.02em] box[mb:12px]">DOM động</h2>
+                <p data-css="text[cl:#94a3b8|size:16px|lh:1.7]">Phần tử thêm bằng JavaScript sau khi trang đã tải vẫn được runtime phát hiện và biên dịch style tự động.</p>
+            </header>
+
+            <div data-css="box[p:24px|radius:16px|bg:rgba(15,23,42,0.55)|border:1px_solid_rgba(148,163,184,0.14)]">
+                <div data-css="box[flex|wrap|mainBetween|crossCenter|gap:12px|mb:20px]">
+                    <div data-css="box[flex|wrap|gap:10px]">
+                        <button id="addBoxBtn"
+                                data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:10px_18px|radius:10px|bg:linear-gradient(135deg,#a78bfa,#22d3ee)|border:none] text[cl:#05070d|bold|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                                data-pc-hover="tf[transform:translateY(-2px)] box[shadow:0_10px_30px_rgba(167,139,250,0.4)]">
+                            + appendChild()
+                        </button>
+                        <button id="resetBtn"
+                                data-css="cursor[pointer] anim[transition:all_0.25s_ease] box[p:10px_18px|radius:10px|bg:transparent|border:1px_solid_rgba(148,163,184,0.25)] text[cl:#94a3b8|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]"
+                                data-pc-hover="box[borderColor:rgba(244,114,182,0.6)] text[cl:#f472b6]">
+                            reset
+                        </button>
+                    </div>
+                    <p data-css="text[cl:#64748b|size:12px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">
+                        nodes: <span id="nodeCount" data-css="text[cl:#22d3ee|bold]">0</span>
+                    </p>
+                </div>
+
+                <p id="emptyHint" data-css="box[p:28px|radius:12px|border:1px_dashed_rgba(148,163,184,0.25)] text[center|cl:#475569|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">
+                    &gt; chưa có node nào — bấm appendChild()
+                </p>
+                <div id="boxContainer"
+                     data-css="all{box[grid|gap:14px]} mobile{box[gridBoxC:1fr]} tablet{box[gridBoxC:repeat(2,1fr)]} desktop{box[gridBoxC:repeat(3,1fr)]}">
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer data-css="box[flex|wrap|mainBetween|crossCenter|gap:12px|mt:96px|p:28px_0|borderTop:1px_solid_rgba(148,163,184,0.12)] text[cl:#475569|size:13px|font:JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace]">
+            <span>built with data-css-js · 0 dòng CSS viết tay</span>
+            <span data-css="text[cl:#64748b]">MIT License</span>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { initDataCss } from '../../dist/data-css-js/index.js';
+        initDataCss({ assetBase: '../../dist/data-css-js/assets' });
+    </script>
+    <script>
+        const MONO = 'JetBrains_Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+        const container = document.getElementById('boxContainer');
+        const nodeCount = document.getElementById('nodeCount');
+        const emptyHint = document.getElementById('emptyHint');
+
+        function syncState() {
+            const count = container.children.length;
+            nodeCount.textContent = count;
+            emptyHint.hidden = count > 0;
+        }
+
+        document.getElementById('addBoxBtn').addEventListener('click', function () {
+            const index = container.children.length + 1;
+            const node = document.createElement('div');
+            node.setAttribute('data-css',
+                'anim[transition:all_0.25s_ease] box[flex|mainBetween|crossCenter|p:16px_18px|radius:12px|bg:rgba(167,139,250,0.08)|border:1px_solid_rgba(167,139,250,0.3)] ' +
+                'text[cl:#c4b5fd|size:13px|font:' + MONO + ']'
+            );
+            node.setAttribute('data-pc-hover',
+                'tf[transform:translateY(-3px)] box[borderColor:#a78bfa|shadow:0_0_24px_rgba(167,139,250,0.3)]'
+            );
+            node.textContent = 'node-' + String(index).padStart(2, '0');
+
+            const status = document.createElement('span');
+            status.setAttribute('data-css', 'text[cl:#34d399|size:11px]');
+            status.textContent = '● mounted';
+            node.appendChild(status);
+
+            container.appendChild(node);
+            syncState();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            container.replaceChildren();
+            syncState();
+        });
+    </script>
+</body>
+</html>

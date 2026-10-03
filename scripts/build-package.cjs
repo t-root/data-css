@@ -44,7 +44,7 @@ function buildProfile(profileName) {
     }
   }
   mkdirSync(outputPath, { recursive: true });
-  for (const fileName of ['package.json', 'index.js', 'index.d.ts', 'copy-assets.cjs', 'README.md', 'index.html']) {
+  for (const fileName of ['package.json', 'index.js', 'index.d.ts', 'copy-assets.cjs', 'README.md']) {
     const sourceFile = join(sourcePath, fileName);
     if (existsSync(sourceFile)) cpSync(sourceFile, join(outputPath, fileName));
   }
