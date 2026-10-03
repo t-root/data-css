@@ -272,31 +272,69 @@ Lời gọi khởi tạo đầu tiên quyết định các option trên. Những
 
 ### Chờ runtime sẵn sàng
 
+Mỗi package export sẵn các hàm lifecycle. Chúng tự gắn với runtime của package đó, gọi được cả trước khi `initDataCss()` chạy, và trả về hàm huỷ đăng ký:
+
 ```js
-window.dataCssReady(() => {
-  startWidgets();
+import {
+  initDataCss,
+  getDataCssStatus,  // 'idle' | 'loading' | 'ready' | 'error'
+  whenDataCssReady,  // Promise<boolean>
+  onDataCssReady,    // cb(ready) — gọi cả khi thành công lẫn thất bại
+  onDataCssUpdate,   // cb mỗi lần CSS cho DOM mới được chèn
+  nextDataCssUpdate, // Promise: chờ lần chèn CSS kế tiếp
+} from 'data-css-js'; // React: import từ 'data-css-react/react'
+
+onDataCssReady(ready => {
+  if (ready) startWidgets();
+  else showFallback(); // không tải được config
 });
 
-window.dataCssReadyAgain(() => {
-  // CSS cho DOM mutation mới đã được chèn.
-});
+const off = onDataCssUpdate(() => refreshDynamicUi());
+off(); // ngừng nghe khi không cần nữa
 
-document.addEventListener('dataCssError', () => {
-  console.error('Không thể tải config data-css');
-});
+container.append(card);
+await nextDataCssUpdate(); // card đã có style, có thể đo kích thước
 ```
 
-`dataCssReady` an toàn để đăng ký muộn: callback chạy ở microtask kế tiếp nếu runtime đã xong. Khi có hai runtime trên cùng trang, có thể nghe event scoped như `dataCssReady:data-css-js` hoặc `dataCssReadyAgain:data-css-react`.
+- `onDataCssReady` an toàn khi đăng ký muộn: nếu runtime đã xong, callback chạy ở microtask kế tiếp với kết quả cũ.
+- `onDataCssUpdate` nghe liên tục cho tới khi gọi hàm huỷ.
+- `nextDataCssUpdate` chỉ resolve khi có phần tử mang `data-css`, `data-pc-*` hoặc `data-pe-*` được thêm hay đổi.
+- Ngoài trình duyệt (SSR), các hàm không làm gì: `getDataCssStatus()` trả `'idle'`, `whenDataCssReady()` trả `false`, callback không bao giờ được gọi.
+
+React có thêm hook:
+
+```jsx
+import { useDataCssStatus } from 'data-css-react/react';
+
+function Widget() {
+  const status = useDataCssStatus(); // 'loading' | 'ready' | 'error'
+  if (status === 'error') return <Fallback />;
+  return <Chart ready={status === 'ready'} />;
+}
+```
 
 ### Dừng và chạy lại observer
 
 ```js
-window.destroyDataCss?.();
-window.startDataCss?.();
-await initDataCss(); // cũng tự resume nếu đã destroy
+import { stopDataCss, startDataCss } from 'data-css-js';
+
+stopDataCss();         // chỉ dừng runtime của package này
+startDataCss();
+await initDataCss();   // cũng tự chạy lại nếu đã dừng
 ```
 
-`window.whenDataCssReady?.()` trả Promise lifecycle. `window.__dataCssRuntimes` chứa state tách biệt theo runtime, dùng cho tích hợp nâng cao.
+Khi `data-css-js` và `data-css-react` cùng chạy trên một trang, mỗi package chỉ điều khiển runtime của chính nó và có thể khởi tạo song song.
+
+### API global cũ (deprecated)
+
+`window.dataCssReady`, `window.dataCssReadyAgain`, `window.whenDataCssReady`, `window.destroyDataCss`, `window.startDataCss` và các event `dataCssReady`, `dataCssReadyAgain`, `dataCssError` vẫn hoạt động để tương thích ngược, nhưng có các hạn chế sau:
+
+- Chỉ tồn tại sau khi runtime tải xong.
+- `dataCssReadyAgain` chỉ chạy một lần cho mỗi lần đăng ký.
+- `dataCssReady` không bao giờ được gọi khi lỗi config.
+- Khi có hai runtime trên trang, các hàm này điều khiển runtime nào tải sau cùng.
+
+Hãy dùng các hàm export ở trên thay thế.
 
 ## Cấu hình
 
@@ -392,7 +430,7 @@ npm run pack:js       # kiểm tra package JS trước publish
 npm run pack:react    # kiểm tra package React trước publish
 ```
 
-Xem ví dụ mẫu: chạy `npm run build:js`, mở một static server tại thư mục gốc repository (ví dụ `python -m http.server`) rồi truy cập `/examples/js/index.html`.
+Xem ví dụ mẫu: chạy `npm run build`, mở một static server tại thư mục gốc repository (ví dụ `python -m http.server`) rồi truy cập `/examples/js/index.html` hoặc `/examples/react/index.html`. Ví dụ React tải React từ CDN qua import map và biên dịch JSX ngay trong trình duyệt, nên cần mạng; ứng dụng thật nên dùng bundler.
 
 Chỉ publish từ `dist/data-css-js` hoặc `dist/data-css-react`. Xem thêm [CORE.md](CORE.md) để biết quy trình build core/profile.
 

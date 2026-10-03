@@ -36,19 +36,24 @@ TypeScript declarations are bundled with the package.
 
 ## Lifecycle
 
-`await initDataCss()` resolves after the initial DOM scan and CSS insertion. `dataCssReady` has the same meaning and is safe to subscribe to after startup; in that case its callback runs in the next microtask. `dataCssReadyAgain` fires only after a later DOM mutation's CSS has been inserted. `dataCssError` signals that the runtime could not load a valid configuration.
+`await initDataCss()` resolves `true` after the initial DOM scan and CSS insertion, or `false` when the configuration cannot be loaded. The package also exports lifecycle helpers that are bound to this runtime, may be called before `initDataCss()`, and return an unsubscribe function:
 
 ```js
-const ready = await initDataCss({ assetBase: '/data-css-js' });
-if (ready) {
-  // The initial data-css attributes have been compiled.
-}
+import { initDataCss, onDataCssReady, onDataCssUpdate, nextDataCssUpdate, getDataCssStatus } from 'data-css-js';
 
-// Also safe when this runs after startup.
-window.dataCssReady(() => initializeWidgets());
+onDataCssReady(ready => (ready ? initializeWidgets() : showFallback()));
+const off = onDataCssUpdate(() => refreshDynamicUi()); // fires on every later CSS insertion
+await initDataCss({ assetBase: '/data-css-js' });
+
+container.append(card);
+await nextDataCssUpdate(); // card is styled now
+getDataCssStatus();        // 'idle' | 'loading' | 'ready' | 'error'
+off();
 ```
 
-For a temporary teardown, call `window.destroyDataCss()`. Calling `initDataCss()` again resumes the observer.
+`whenDataCssReady()` returns the startup promise. `stopDataCss()` pauses DOM observation for this package only; `startDataCss()` or another `initDataCss()` call resumes it. Outside a browser every helper is inert.
+
+The page-wide `window.dataCssReady`, `window.dataCssReadyAgain`, `window.whenDataCssReady`, `window.destroyDataCss`, `window.startDataCss` globals and the `dataCssReady` / `dataCssReadyAgain` / `dataCssError` events remain for backward compatibility but are deprecated: they exist only after the runtime loads, `dataCssReadyAgain` fires once per registration, and with two runtimes they control whichever loaded last.
 
 ## Runtime options
 
@@ -70,7 +75,7 @@ The builder preserves an explicit `name[...]` class, otherwise creates a determi
 
 ## Multiple runtimes
 
-`data-css-js` and `data-css-react` can coexist when each owns a separate DOM subtree. Pass `root` on their first initialization; each runtime keeps its lifecycle and generated styles isolated.
+`data-css-js` and `data-css-react` can coexist when each owns a separate DOM subtree. Pass `root` on their first initialization; each runtime keeps its options, lifecycle and generated styles isolated, so both may initialize concurrently.
 
 ```js
 await initDataCss({ assetBase: '/data-css-js', root: document.querySelector('#legacy-widget') });

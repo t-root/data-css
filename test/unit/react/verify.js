@@ -4,7 +4,16 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { initDataCss } from '../../../dist/data-css-react/index.js';
+import {
+  initDataCss,
+  getDataCssStatus,
+  whenDataCssReady,
+  onDataCssReady,
+  onDataCssUpdate,
+  nextDataCssUpdate,
+  stopDataCss,
+  startDataCss,
+} from '../../../dist/data-css-react/index.js';
 import { escapeCssString, isValidDataCssClassName } from '../../../dist/data-css-react/internal/security.js';
 import { compileDataCss, convertWUnits } from '../../../dist/data-css-react/internal/compiler.js';
 
@@ -13,6 +22,21 @@ const { copyAssets } = require('../../../dist/data-css-react/copy-assets.cjs');
 const { buildDataCssHtml, loadDataCssConfig } = require('../../../dist/data-css-react/build.cjs');
 
 assert.equal(await initDataCss(), false, 'SSR import should be a no-op');
+// Lifecycle helpers must be inert outside a browser.
+assert.equal(getDataCssStatus(), 'idle');
+assert.equal(await whenDataCssReady(), false);
+let serverCallbackCalls = 0;
+const offReady = onDataCssReady(() => { serverCallbackCalls += 1; });
+const offUpdate = onDataCssUpdate(() => { serverCallbackCalls += 1; });
+assert.equal(typeof offReady, 'function');
+assert.equal(typeof offUpdate, 'function');
+offReady();
+offUpdate();
+await nextDataCssUpdate();
+stopDataCss();
+startDataCss();
+await Promise.resolve();
+assert.equal(serverCallbackCalls, 0, 'server-side subscriptions should never fire');
 assert.equal(isValidDataCssClassName('product_card-2'), true);
 assert.equal(isValidDataCssClassName('bad selector]'), false);
 assert.equal(escapeCssString("O'Reilly\nnext"), "O\\'Reilly\\A next");

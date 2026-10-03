@@ -109,13 +109,28 @@ function initDataCss(options?: DataCssInitOptions): Promise<boolean>;
 
 The first initialization owns these options; later calls cannot change the asset base or root. `await initDataCss()` resolves only after the initial scan and CSS insertion complete.
 
+Lifecycle helpers are exported from both `data-css-react` and `data-css-react/react`. They are bound to this package's runtime, may be called before initialization, and return an unsubscribe function:
+
 ```js
-window.dataCssReady(() => startWidgets());
-window.dataCssReadyAgain(() => refreshDynamicUi());
-document.addEventListener('dataCssError', showConfigurationError);
+import { onDataCssReady, onDataCssUpdate, nextDataCssUpdate, stopDataCss, startDataCss } from 'data-css-react/react';
+
+onDataCssReady(ready => (ready ? startWidgets() : showConfigurationError()));
+const off = onDataCssUpdate(() => refreshDynamicUi()); // every later CSS insertion
+await nextDataCssUpdate(); // resolves after the next CSS insertion
 ```
 
-`dataCssReadyAgain` is emitted after CSS for a later DOM mutation has been inserted. `window.destroyDataCss()` temporarily stops observation; `window.startDataCss()` resumes it.
+In components, read the status with a hook:
+
+```jsx
+import { useDataCssStatus } from 'data-css-react/react';
+
+function Widget() {
+  const status = useDataCssStatus(); // 'loading' | 'ready' | 'error'
+  return status === 'error' ? <Fallback /> : <Chart ready={status === 'ready'} />;
+}
+```
+
+`stopDataCss()` pauses DOM observation for this package only; `startDataCss()` resumes it. The `window.dataCssReady`, `window.dataCssReadyAgain`, `window.destroyDataCss` and `window.startDataCss` globals still work but are deprecated.
 
 ## Performance and SSR
 

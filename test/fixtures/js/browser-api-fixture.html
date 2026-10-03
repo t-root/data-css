@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <main id="app" data-css="text[cl:#123]">API</main>
+    <script type="module">
+      const api = await import('../../../dist/data-css-js/index.js');
+      const results = {};
+      const app = document.getElementById('app');
+      const add = css => {
+        const element = document.createElement('div');
+        element.setAttribute('data-css', css);
+        app.append(element);
+        return element;
+      };
+
+      // Subscriptions made before initDataCss() must still settle.
+      results.statusBefore = api.getDataCssStatus();
+      const earlyReady = new Promise(resolve => api.onDataCssReady(resolve));
+      const whenBefore = api.whenDataCssReady();
+      let cancelledCalls = 0;
+      api.onDataCssReady(() => { cancelledCalls += 1; })();
+      let updates = 0;
+      const offUpdate = api.onDataCssUpdate(() => { updates += 1; });
+
+      results.started = await api.initDataCss({ assetBase: '../../../dist/data-css-js/assets' });
+      results.early = await earlyReady;
+      results.whenBefore = await whenBefore;
+      results.statusAfter = api.getDataCssStatus();
+      results.late = await new Promise(resolve => api.onDataCssReady(resolve));
+
+      // onDataCssUpdate keeps firing until it is removed.
+      let next = api.nextDataCssUpdate();
+      const first = add('text[bold]');
+      await next;
+      next = api.nextDataCssUpdate();
+      add('text[italic]');
+      await next;
+      results.updatesWhileSubscribed = updates;
+      results.firstStyled = getComputedStyle(first).fontWeight;
+      offUpdate();
+      next = api.nextDataCssUpdate();
+      add('text[underline]');
+      await next;
+      results.updatesAfterUnsubscribe = updates;
+
+      api.stopDataCss();
+      const stopped = add('text[uppercase]');
+      await new Promise(resolve => setTimeout(resolve, 100));
+      results.stoppedHasClass = stopped.hasAttribute('data-css-generated-class');
+      api.startDataCss();
+      next = api.nextDataCssUpdate();
+      const resumed = add('text[lowercase]');
+      await next;
+      results.resumedHasClass = resumed.hasAttribute('data-css-generated-class');
+
+      results.cancelledCalls = cancelledCalls;
+      results.internalGlobals = ['generateRandomClassName', 'processClassName', 'detectDevice', 'updateStylesheet',
+        'processDevices', 'removeCssElement', 'initConfig'].filter(name => name in window);
+      document.body.dataset.results = JSON.stringify(results);
+    </script>
+  </body>
+</html>

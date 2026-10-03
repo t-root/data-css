@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <section id="js-root"><div data-css="text[cl:#123]">JS</div></section>
+    <section id="react-root"><div data-css="text[cl:#456]">React</div></section>
+    <script type="module">
+      const js = await import('../../../dist/data-css-js/index.js');
+      // The React client avoids the side-effect initialization in index.js.
+      const react = await import('../../../dist/data-css-react/internal/client.js');
+      const jsRoot = document.querySelector('#js-root');
+      const reactRoot = document.querySelector('#react-root');
+      const results = {};
+
+      // Concurrent initialization must not mix the two runtimes' options.
+      const [jsReady, reactReady] = await Promise.all([
+        js.initDataCss({ assetBase: '../../../dist/data-css-js/assets', root: jsRoot }),
+        react.initDataCss({ assetBase: '../../../dist/data-css-react/assets', root: reactRoot }),
+      ]);
+      results.ready = jsReady && reactReady;
+      const css = runtime => [...document.querySelectorAll(`style[data-data-css-runtime="${runtime}"]`)]
+        .map(style => style.textContent).join('\n');
+      results.jsInitialCss = css('data-css-js').includes('color: #123') && !css('data-css-js').includes('color: #456');
+      results.reactInitialCss = css('data-css-react').includes('color: #456') && !css('data-css-react').includes('color: #123');
+
+      // stopDataCss() only affects the package it was imported from.
+      js.stopDataCss();
+      const jsDynamic = document.createElement('div');
+      jsDynamic.setAttribute('data-css', 'text[bold]');
+      const reactDynamic = document.createElement('div');
+      reactDynamic.setAttribute('data-css', 'text[italic]');
+      const reactUpdate = react.nextDataCssUpdate();
+      jsRoot.append(jsDynamic);
+      reactRoot.append(reactDynamic);
+      await reactUpdate;
+      await new Promise(resolve => setTimeout(resolve, 100));
+      results.jsStopped = !jsDynamic.hasAttribute('data-css-generated-class');
+      results.reactRunning = reactDynamic.hasAttribute('data-css-generated-class');
+      document.body.dataset.results = JSON.stringify(results);
+    </script>
+  </body>
+</html>

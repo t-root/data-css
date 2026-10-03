@@ -28,11 +28,19 @@ function getBasePath() {
 }
 
 const basePath = getBasePath();
-const assetBase = (window.__DATA_CSS_ASSET_BASE__ || '/data-css-react').replace(/\/$/, '');
 const runtimeName = 'data-css-react';
+// initDataCss() passes options per runtime so two packages initializing at the
+// same time cannot read each other's settings. The single-runtime globals stay
+// as a fallback for pages that load internal/runtime.js directly.
+const initOptions = window.__dataCssRuntimeOptions?.[runtimeName] || {};
+const assetBase = (initOptions.assetBase || window.__DATA_CSS_ASSET_BASE__ || '/data-css-react').replace(/\/$/, '');
 const configStorageKey = `${runtimeName}:config:${assetBase}`;
-const shouldStripAttributes = Boolean(window.__DATA_CSS_STRIP_ATTRIBUTES__);
-const runtimeRoot = window.__DATA_CSS_ROOT__ || document;
+const shouldStripAttributes = Boolean(initOptions.stripAttributes || window.__DATA_CSS_STRIP_ATTRIBUTES__);
+const runtimeRoot = initOptions.root || window.__DATA_CSS_ROOT__ || document;
+const debugRequested = Boolean(initOptions.debug || window.__DATA_CSS_DEBUG__);
+// Engine helpers stay private to this runtime instead of living on window,
+// where a second bundle would overwrite them.
+const internals = {};
 
 const runtimeRegistry = window.__dataCssRuntimes || (window.__dataCssRuntimes = {});
 const lifecycle = runtimeRegistry[runtimeName] || {
@@ -89,7 +97,7 @@ let observerOptions = null;
 
 //START FUNCTION CREATE CLASS
 {
-    window.generateRandomClassName = () => {
+    internals.generateRandomClassName = () => {
         const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const numbers = '0123456789';
         let className = '';
@@ -106,15 +114,15 @@ let observerOptions = null;
         return className;
     }
     // ====================================================================================================
-    window.processClassName = function (name) {
-        let className = name || generateRandomClassName();
+    internals.processClassName = function (name) {
+        let className = name || internals.generateRandomClassName();
         if (name && !isValidDataCssClassName(name)) {
             console.error(`Invalid data-css name "${name}". A generated class name was used instead.`);
-            className = generateRandomClassName();
+            className = internals.generateRandomClassName();
         }
         if (!name) {
             while (usedNames.has(className)) {
-                className = generateRandomClassName();
+                className = internals.generateRandomClassName();
             }
         }
         usedNames.add(className);
@@ -212,7 +220,7 @@ function waitForStaticAssets() {
 
 //START PROCESSDEVICES
 {
-    window.detectDevice = function (devices) {
+    internals.detectDevice = function (devices) {
         const width = window.innerWidth;
         // Tạo mảng các device từ object
         const deviceArr = Object.entries(devices)
@@ -235,7 +243,7 @@ function waitForStaticAssets() {
         return deviceArr[deviceArr.length - 1].pixel;
     }
     // Sửa updateStylesheet để nhận device
-    window.updateStylesheet = function () {
+    internals.updateStylesheet = function () {
         let emittedCSS = false;
         const staticAssets = config.assets || {};
         const baseFile = staticAssets.base || 'base.css';
@@ -346,7 +354,7 @@ function waitForStaticAssets() {
 
 
     // Sửa processDevices để update stylesheet theo device
-    window.processDevices = function (content, selector, config, devicePixel) {
+    internals.processDevices = function (content, selector, config, devicePixel) {
         for (const rule of compileDataCss(content, selector, config, devicePixel)) {
             cssRuleManager.addRule(rule.selector, rule.property, rule.value, rule.mediaQuery);
         }
@@ -368,7 +376,7 @@ function cleanupDataAttributes(element) {
     let pendingCleanupIds = new Set(); // Set để lưu cssId
 
     // Hàm xóa CSS element khi phần tử bị xóa
-    window.removeCssElement = function (cssId) {
+    internals.removeCssElement = function (cssId) {
         if (!cssId) return;
 
         // Thêm cssId vào danh sách chờ cleanup
@@ -557,13 +565,13 @@ function processCssElement(element) {
 
 // Capture internal APIs so loading the React runtime (or a second bundle) does
 // not redirect this runtime's observer to another bundle's globals.
-const processClassNameForRuntime = window.processClassName;
-const processDevicesForRuntime = window.processDevices;
-const updateStylesheetForRuntime = window.updateStylesheet;
-const removeCssElementForRuntime = window.removeCssElement;
+const processClassNameForRuntime = internals.processClassName;
+const processDevicesForRuntime = internals.processDevices;
+const updateStylesheetForRuntime = internals.updateStylesheet;
+const removeCssElementForRuntime = internals.removeCssElement;
 const createElementDataCssForRuntime = window.createElementDataCss;
 const createClassDataCssForRuntime = window.createClassDataCss;
-const detectDeviceForRuntime = window.detectDevice;
+const detectDeviceForRuntime = internals.detectDevice;
 
 let stylesheetUpdateScheduled = false;
 let readyAgainPending = false;
@@ -665,15 +673,16 @@ const observer = new MutationObserver((mutations) => {
     }
 });
 
-window.destroyDataCss = function () {
+lifecycle.destroy = function () {
     observer.disconnect();
 };
-runtimeRegistry[runtimeName].destroy = window.destroyDataCss;
-
-window.startDataCss = function () {
+lifecycle.start = function () {
     if (observerOptions) observer.observe(runtimeRoot === document ? document.body : runtimeRoot, observerOptions);
 };
-runtimeRegistry[runtimeName].start = window.startDataCss;
+// Deprecated page-wide aliases: with two runtimes they control whichever loaded
+// last. Prefer stopDataCss()/startDataCss() exported by each package.
+window.destroyDataCss = lifecycle.destroy;
+window.startDataCss = lifecycle.start;
 // START CONFIG
 {
     async function fetchConfigAsset(fileName) {
@@ -704,7 +713,7 @@ runtimeRegistry[runtimeName].start = window.startDataCss;
         return loadedConfig;
     }
 
-    window.initConfig = async function () {
+    internals.initConfig = async function () {
         let config;
         let configStr = readSessionValue(configStorageKey);
         if (configStr) {
@@ -736,7 +745,7 @@ runtimeRegistry[runtimeName].start = window.startDataCss;
 {
     (async () => {
         // Load validateCssSyntax động
-        config = await initConfig();
+        config = await internals.initConfig();
         if (!config?.group || !config?.devices) {
             console.error('data-css could not start because its configuration is invalid or unavailable.');
             completeDataCssStartup(false);
@@ -746,7 +755,7 @@ runtimeRegistry[runtimeName].start = window.startDataCss;
         if (!document.body) {
             await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
         }
-        isDevMode = Boolean(window.__DATA_CSS_DEBUG__ || config.devMode);
+        isDevMode = Boolean(debugRequested || config.devMode);
         if (isDevMode) {
             ({ validateCssSyntax } = await import('./validateCssSyntax.js'));
         }

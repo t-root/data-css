@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { initDataCss } from './internal/client.js';
+import { useEffect, useRef, useState } from 'react';
+import { getDataCssStatus, initDataCss, onDataCssReady } from './internal/client.js';
 
 /**
  * Initializes data-css after React mounts. Prefer this provider in React apps
@@ -22,4 +22,30 @@ export function DataCssProvider({ children, assetBase, debug, stripAttributes, r
   return children;
 }
 
-export { initDataCss };
+const toHookStatus = status => (status === 'ready' || status === 'error' ? status : 'loading');
+
+/**
+ * Returns 'loading' until the runtime has applied its initial CSS, then
+ * 'ready', or 'error' when the configuration cannot be loaded.
+ */
+export function useDataCssStatus() {
+  const [status, setStatus] = useState(() => toHookStatus(getDataCssStatus()));
+
+  useEffect(() => {
+    setStatus(toHookStatus(getDataCssStatus()));
+    return onDataCssReady(ready => setStatus(ready ? 'ready' : 'error'));
+  }, []);
+
+  return status;
+}
+
+export {
+  initDataCss,
+  getDataCssStatus,
+  whenDataCssReady,
+  onDataCssReady,
+  onDataCssUpdate,
+  nextDataCssUpdate,
+  stopDataCss,
+  startDataCss,
+} from './internal/client.js';

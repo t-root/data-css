@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <main data-css="text[cl:#123]">Missing config</main>
+    <script type="module">
+      const api = await import('../../../dist/data-css-js/index.js');
+      const viaCallback = new Promise(resolve => api.onDataCssReady(resolve));
+      const results = {};
+      results.started = await api.initDataCss({ assetBase: './missing-data-css-assets' });
+      results.viaCallback = await viaCallback;
+      results.status = api.getDataCssStatus();
+      results.late = await new Promise(resolve => api.onDataCssReady(resolve));
+      results.when = await api.whenDataCssReady();
+      document.body.dataset.results = JSON.stringify(results);
+    </script>
+  </body>
+</html>
